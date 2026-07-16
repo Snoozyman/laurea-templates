@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only">
+  <info>
+    <title>Laurea UAS - Harvard</title>
+    <id>http://www.zotero.org/styles/laurea-harvard</id>
+    <link href="http://www.zotero.org/styles/laurea-harvard" rel="self"/>
+    <link href="https://libguides.laurea.fi/reference_management" xml:lang="en-GB" rel="documentation"/>
+    <link href="https://libguides.laurea.fi/viitteidenhallinta" xml:lang="fi-FI" rel="documentation"/>
+    <author>
+      <name>Mikko Tuomikoski</name>
+      <uri>https://github.com/Snoozyman</uri>
+    </author>
+    <category citation-format="author-date"/>
+    <category field="generic-base"/>
+    <summary>Laurea University of Applied Sciences Harvard referencing style (English) — corrected to match official guidelines.</summary>
+    <updated>2026-07-16T00:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <!-- ===================== LOCALES ===================== -->
+  <locale xml:lang="fi">
+    <date form="text">
+      <date-part name="day" suffix="."/>
+      <date-part name="month" suffix="." form="numeric"/>
+      <date-part name="year"/>
+    </date>
+    <terms>
+      <term name="no date">s.a.</term>
+      <term name="and">&amp;</term>
+      <term name="et-al">ym.</term>
+      <term name="available at">URL</term>
+      <term name="accessed">Luettu</term>
+      <term name="page">s.</term>
+      <term name="editor" form="short">toim.</term>
+    </terms>
+  </locale>
+  <locale xml:lang="en">
+    <date form="text">
+      <date-part name="day" suffix=" "/>
+      <date-part name="month" suffix=" "/>
+      <date-part name="year"/>
+    </date>
+    <terms>
+      <term name="no date">n.d.</term>
+      <term name="and">&amp;</term>
+      <term name="et-al">&amp; al.</term>
+      <term name="available at">Available at</term>
+      <term name="accessed">Accessed</term>
+      <term name="page">pp.</term>
+      <term name="editor" form="short">ed.</term>
+    </terms>
+  </locale>
+
+  <!-- ===================== MACROS ===================== -->
+
+  <!-- Author names for bibliography: Surname, I. -->
+  <macro name="author-bibliography">
+    <names variable="author">
+      <name name-as-sort-order="all" and="text" sort-separator=", " initialize-with="." delimiter-precedes-last="never" delimiter=", "/>
+      <label form="short" prefix=" "/>
+      <substitute>
+        <text macro="author-substitute"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Author names for in-text citation: Surname -->
+  <macro name="author-citation">
+    <names variable="author">
+      <name form="short" and="text" sort-separator=", " initialize-with="." delimiter-precedes-last="never" delimiter=", "/>
+      <substitute>
+        <text macro="author-substitute"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Fallback when no author: use title or publisher -->
+  <macro name="author-substitute">
+    <choose>
+      <if position="subsequent" variable="title-short" type="legislation">
+        <text variable="title-short"/>
+      </if>
+      <else-if type="legislation">
+        <text macro="title"/>
+      </else-if>
+      <else-if variable="publisher">
+        <text variable="publisher"/>
+      </else-if>
+      <else>
+        <text macro="title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Editor names for bibliography: Surname, I. (ed.) or (eds.) -->
+  <macro name="editor-bibliography">
+    <names variable="editor">
+      <name name-as-sort-order="all" and="text" sort-separator=", " initialize-with="." delimiter-precedes-last="never" delimiter=", "/>
+      <label form="short" prefix=" (" suffix=")"/>
+    </names>
+  </macro>
+
+  <!-- Title: plain text, no italics (sentence case applied by CSL processor) -->
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <!-- Genre: thesis type (PhD thesis, MSc thesis, BBA thesis, etc.) -->
+  <macro name="genre">
+    <choose>
+      <if type="thesis">
+        <text variable="genre"/>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Publication year / date -->
+  <macro name="issued">
+    <choose>
+      <if type="legislation"/>
+      <else-if variable="issued">
+        <choose>
+          <if type="personal_communication speech post" match="any">
+            <date variable="issued" form="text"/>
+          </if>
+          <else>
+            <date variable="issued" form="text" date-parts="year"/>
+            <text variable="year-suffix"/>
+          </else>
+        </choose>
+      </else-if>
+      <else>
+        <text term="no date"/>
+        <text variable="year-suffix"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Publisher: Place: Publisher (not for articles) -->
+  <macro name="publisher">
+    <choose>
+      <if type="article article-magazine article-newspaper article-journal" match="none">
+        <choose>
+          <if variable="publisher-place">
+            <group delimiter=": " suffix="">
+              <text variable="publisher-place"/>
+              <text variable="publisher"/>
+            </group>
+          </if>
+          <else>
+            <text variable="publisher"/>
+          </else>
+        </choose>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Container: journal/magazine info — Journal, Volume (Issue), Pages -->
+  <macro name="container">
+    <choose>
+      <if type="article article-magazine article-newspaper article-journal" match="any">
+        <group delimiter=", " suffix="">
+          <text variable="container-title"/>
+          <group>
+            <text variable="volume" suffix=" "/>
+            <text variable="issue" prefix="(" suffix=")"/>
+          </group>
+          <text variable="page"/>
+        </group>
+      </if>
+      <else-if type="chapter" match="any">
+        <group>
+          <text term="page" suffix=" "/>
+          <text variable="page"/>
+        </group>
+      </else-if>
+    </choose>
+  </macro>
+
+  <!-- Container for legislation -->
+  <macro name="container-legislation">
+    <text variable="container-title" suffix=". "/>
+    <group delimiter=", " suffix=". ">
+      <text variable="collection-title"/>
+      <date variable="issued" form="text"/>
+      <group>
+        <text variable="page"/>
+      </group>
+    </group>
+  </macro>
+
+  <!-- Event info for personal communication / speeches -->
+  <macro name="event">
+    <choose>
+      <if type="personal_communication speech" match="any">
+        <text variable="event" suffix=". "/>
+        <text variable="event-place"/>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Source info (e.g. "Email to the author") for personal communication -->
+  <macro name="source">
+    <choose>
+      <if type="personal_communication speech post" match="any">
+        <text variable="source"/>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Access info: DOI preferred, then URL. Access date shown only without DOI. -->
+  <macro name="access">
+    <choose>
+      <if variable="DOI" match="all">
+        <!-- DOI present: no access date needed, just the DOI URL -->
+        <group suffix="">
+          <text variable="DOI" prefix="https://doi.org/"/>
+        </group>
+      </if>
+      <else-if variable="URL" match="all">
+        <!-- No DOI but URL: show access date + URL -->
+        <group>
+          <text term="accessed" text-case="capitalize-first" prefix=" " suffix=": "/>
+          <date variable="accessed" form="text"/>
+          <text variable="URL"/>
+        </group>
+      </else-if>
+    </choose>
+  </macro>
+
+  <!-- Locator (page numbers, section, chapter) -->
+  <macro name="locator">
+    <choose>
+      <if type="legislation">
+        <group prefix=" ">
+          <label variable="locator"/>
+          <text variable="locator" prefix=" "/>
+        </group>
+      </if>
+      <else-if locator="page">
+        <text variable="locator" prefix=", "/>
+      </else-if>
+      <else>
+        <group prefix=", ">
+          <label variable="locator"/>
+          <text variable="locator" prefix=" "/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Note (e.g. Creative Commons license info) -->
+  <macro name="note">
+    <text variable="note"/>
+  </macro>
+
+  <!-- ===================== CITATION ===================== -->
+  <!-- et-al-min=6: show all authors up to 5, truncate at 6+ (first mention)
+       et-al-subsequent-min=3: truncate at 3+ for subsequent citations
+       Matches guidelines: "3-5 authors: all first time, et al. second+ ; 6+: et al. throughout" -->
+  <citation et-al-min="6" et-al-use-first="1" et-al-subsequent-min="3" et-al-subsequent-use-first="1" disambiguate-add-year-suffix="true">
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=" ">
+        <text macro="author-citation"/>
+        <text macro="issued"/>
+        <text macro="note"/>
+      </group>
+      <text macro="locator"/>
+    </layout>
+  </citation>
+
+  <!-- ===================== BIBLIOGRAPHY ===================== -->
+  <bibliography>
+    <sort>
+      <key macro="author-bibliography"/>
+      <key variable="issued"/>
+    </sort>
+    <layout suffix="">
+      <choose>
+        <!-- Legislation: Author. Place: Publisher. Container. Accessed URL. -->
+        <if type="legislation">
+          <text macro="author-bibliography" suffix=". "/>
+          <text macro="publisher"/>
+          <text macro="container-legislation"/>
+          <text macro="access"/>
+        </if>
+        <!-- All other types: standard author-date format -->
+        <else>
+          <text macro="author-bibliography"/>
+          <text macro="issued" prefix=" " suffix="."/>
+          <group delimiter=". " prefix=" " suffix="">
+            <text macro="title"/>
+            <text macro="genre"/>
+            <text macro="publisher"/>
+            <text macro="container"/>
+            <text macro="source"/>
+            <text macro="event"/>
+            <text macro="access"/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
