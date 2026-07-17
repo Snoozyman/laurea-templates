@@ -48,7 +48,7 @@ set text(
 set par(
   justify: true,
   leading: 0.75em,
-  spacing: 0.5em,
+  spacing: 1.5em,
   first-line-indent: 0pt,
 )
   // ── Headings ────────────────────────────────────────────────
@@ -171,7 +171,7 @@ set par(
     // Year of publication + Laurea — centred, 14pt
     #block(width: 100%)[
       #set text(size: 14pt)
-      Year of publication #h(0.5em) Laurea
+      #year #h(0.5em) Laurea
     ]
 
     #v(1fr)
@@ -190,7 +190,7 @@ set par(
     // Title — bold
     #block(width: 100%)[
       #set align(center)
-      #set text(size: 14pt, weight: "bold")
+      #set text(size: 14pt)
       #title
     ]
 
@@ -247,7 +247,7 @@ set par(
 
     // Year — with bottom border underline
     #block(width: 100%, stroke: (bottom: 0.4pt), inset: (bottom: 5pt))[
-      Year #h(2fr) #page-count #h(1em) Number of pages #h(1fr) #page-count
+      Year #h(2fr) #year #h(1em) Number of pages #h(1fr) #page-count
     ]
 
     #v(1.5em)
@@ -305,26 +305,30 @@ set par(
     v(0.5em)
 
     if bibliography-file != none {
-      bibliography(bibliography-file, style: csl-style)
+      bibliography(bibliography-file, style: csl-style, title: none)
     }
   }
 
   // ── LIST OF FIGURES ────────────────────────────────────────
-  pagebreak()
-  {
-    set heading(numbering: none)
-    heading(level: 1)[Figures]
-    v(0.5em)
-    outline(title: none, target: figure.where(kind: image))
+  context if query(figure.where(kind: image)).len() > 0 {
+    pagebreak()
+    {
+      set heading(numbering: none)
+      heading(level: 1)[Figures]
+      v(0.5em)
+      outline(title: none, target: figure.where(kind: image))
+    }
   }
 
   // ── LIST OF TABLES ─────────────────────────────────────────
-  pagebreak()
-  {
-    set heading(numbering: none)
-    heading(level: 1)[Tables]
-    v(0.5em)
-    outline(title: none, target: figure.where(kind: table))
+  context if query(figure.where(kind: table)).len() > 0 {
+    pagebreak()
+    {
+      set heading(numbering: none)
+      heading(level: 1)[Tables]
+      v(0.5em)
+      outline(title: none, target: figure.where(kind: table))
+    }
   }
 
   // ── APPENDICES (placeholder — user adds via appendix()) ────

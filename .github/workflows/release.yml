@@ -1,0 +1,38 @@
+name: Release
+on:
+  push:
+    tags: [v*]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Read package version
+        id: meta
+        run: |
+          VERSION=$(grep '^version' typst.toml | head -1 | cut -d'"' -f2)
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Validate tag matches version
+        run: |
+          if [[ "${{ steps.meta.outputs.tag }}" != "v${{ steps.meta.outputs.version }}" ]]; then
+            echo "Tag ${{ steps.meta.outputs.tag }} does not match version ${{ steps.meta.outputs.version }}" >&2
+            exit 1
+          fi
+
+      - name: Create archive
+        run: |
+          PKG_NAME=$(grep '^name' typst.toml | head -1 | cut -d'"' -f2)
+          VERSION=${{ steps.meta.outputs.version }}
+          mkdir -p dist
+          zip -r "dist/${PKG_NAME}-${VERSION}.zip" \
+            typst.toml src/ template/ thumbnail.png LICENSE README.md
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true

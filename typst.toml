@@ -1,0 +1,17 @@
+[package]
+name = "laurea-templates"
+version = "0.1.0"
+entrypoint = "src/lib.typ"
+authors = ["Mikko Tuomikoski"]
+license = "CC-BY-SA-3.0"
+description = "Laurea University of Applied Sciences thesis template for Typst."
+repository = "https://github.com/laurea-templates/laurea-templates"
+keywords = ["thesis", "laurea", "template", "university", "applied-sciences"]
+categories = ["thesis"]
+disciplines = ["business"]
+compiler = "0.15.0"
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

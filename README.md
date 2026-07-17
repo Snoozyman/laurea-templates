@@ -14,42 +14,46 @@ A Typst template matching the official Laurea University of Applied Sciences Wor
 
 ## Quick Start
 
-1. Copy these files to your project:
-   - `laurea-thesis.typ`
-   - `laurea-harvard.csl`
-   - `laurea-logo.png`
-   - `bar-image.png`
-   - `references.bib` (rename to your preferred name)
-
-2. Create your thesis file:
-
-```typ
-#import "laurea-thesis.typ": *
-
-#show: laurea-thesis.with(
-  title: [Your Thesis Title],
-  author: "First Last",
-  degree: "Bachelor of Business Administration",
-  programme: "Business Management",
-  month: "May",
-  year: "2026",
-  abstract: [
-    Your abstract text here.
-  ],
-  keywords: ("keyword1", "keyword2", "keyword3"),
-  page-count: 50,
-  bibliography-file: "references.bib",
-)
-
-= Introduction
-
-Your content here...
-```
-
-3. Compile:
+### From Typst Universe
 
 ```bash
-typst compile your-thesis.typ
+typst init @preview/laurea-templates:0.1.0 my-thesis
+cd my-thesis
+typst compile main.typ
+```
+
+### Install locally for development
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/Snoozyman/laurea-templates.git
+cd laurea-templates
+```
+
+2. Install as a local package:
+
+```bash
+mkdir -p ~/.local/share/typst/packages/local/laurea-templates/0.1.0
+cp -r src typst.toml ~/.local/share/typst/packages/local/laurea-templates/0.1.0/
+```
+
+3. Edit `template/main.typ` — change the import to use `@local`:
+
+```typ
+#import "@local/laurea-templates:0.1.0": *
+```
+
+4. Compile the template:
+
+```bash
+typst compile template/main.typ
+```
+
+To use the example thesis instead:
+
+```bash
+typst compile example-thesis.typ
 ```
 
 ## Parameters

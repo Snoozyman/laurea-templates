@@ -1,7 +1,7 @@
 // Example usage of the Laurea thesis template
-// Compile with: typst compile example-thesis.typ
+// Compile with: typst compile main.typ
 
-#import "src/lib.typ": *
+#import "@preview/laurea-templates:0.1.0": *
 
 #show: laurea-thesis.with(
   title: [Digital Transformation in Small and Medium-sized Enterprises],
@@ -25,6 +25,7 @@
 = Introduction
 
 Digital transformation has become a critical priority for businesses worldwide @westerman2014. Small and medium-sized enterprises (SMEs) face particular challenges in this process due to limited resources and expertise @verhoef2021.
+
 
 According to @bharadwaj2000, digital transformation involves "the use of digital technology to enable major business improvements." This thesis examines how Finnish SMEs navigate this transformation.
 
