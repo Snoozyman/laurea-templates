@@ -1,37 +1,31 @@
-// Example usage of the Laurea thesis template
-// Compile with: typst compile main.typ
+// Example usage of the Laurea long-report template
+// Compile with: typst compile example-long-report.typ
 
-#import "@local/laurea-templates:0.2.0": thesis, appendix
+#import "src/lib.typ": long-report, appendix
 
-#show: thesis.with(
+#show: long-report.with(
   title: [Digital Transformation in Small and Medium-sized Enterprises],
-  author: "Maija Meikäläinen",
-  degree: "Bachelor of Business Administration",
-  programme: "Business Management",
-  month: "May",
-  year: "2026",
-  page-count: 48,
-  abstract: [
-    This thesis examines the digital transformation process in small and medium-sized enterprises (SMEs) in Finland. The objective is to identify the key factors that influence the adoption of digital technologies and to develop a practical framework for SMEs undertaking digital transformation. The study combines a systematic literature review with semistructured interviews of five SME managers. The results indicate that organizational readiness, leadership commitment, and access to digital skills are the most critical success factors. The thesis proposes a three-phase framework: assessment, implementation, and continuous improvement.
-  ],
-  keywords: ("digital transformation", "SMEs", "Finland", "technology adoption", "organizational change"),
+  authors: ("Maija Meikäläinen",),
+  date: "May 2026",
+  teacher: "Dr. John Doe",
+  document-type: "Report",
+  study-unit: "Digital Business Strategies",
 )
 
+// ═══════════════════════════════════════════════════════════════
+// 1. INTRODUCTION
+// ═══════════════════════════════════════════════════════════════
 
 = Introduction
 
 Digital transformation has become a critical priority for businesses worldwide @westerman2014. Small and medium-sized enterprises (SMEs) face particular challenges in this process due to limited resources and expertise @verhoef2021.
 
+According to @bharadwaj2000, digital transformation involves "the use of digital technology to enable major business improvements." This report examines how Finnish SMEs navigate this transformation and what strategies have proven effective.
 
-According to @bharadwaj2000, digital transformation involves "the use of digital technology to enable major business improvements." This thesis examines how Finnish SMEs navigate this transformation.
-
-The research questions are:
-+ What are the main barriers to digital transformation in Finnish SMEs?
-+ What strategies have proven effective in overcoming these barriers?
-+ How can a practical framework support SMEs in their digital journey?
+The report is structured as follows. Section 2 reviews the relevant literature, Section 3 describes the methodology, Section 4 presents the results, and Section 5 discusses the findings and conclusions.
 
 // ═══════════════════════════════════════════════════════════════
-// CHAPTER 2: THEORETICAL FRAMEWORK
+// 2. THEORETICAL FRAMEWORK
 // ═══════════════════════════════════════════════════════════════
 
 = Theoretical Framework
@@ -45,6 +39,7 @@ Digital transformation is a multidimensional concept that has been defined in va
 Small and medium-sized enterprises are defined by the European Commission as companies with fewer than 250 employees and an annual turnover of less than €50 million. SMEs represent 99% of all businesses in the EU and are a significant source of employment @european2020.
 
 The technology adoption literature identifies several factors that influence SMEs' decisions to adopt new technologies @rogers2003:
+
 - Perceived relative advantage
 - Compatibility with existing systems
 - Complexity of the technology
@@ -56,10 +51,10 @@ The technology adoption literature identifies several factors that influence SME
 Several frameworks have been proposed for understanding digital transformation @verhoef2021. The most widely cited include the MIT Sloan framework @westerman2014 and the Deloitte Digital Maturity Model.
 
 // ═══════════════════════════════════════════════════════════════
-// CHAPTER 3: METHODOLOGY
+// 3. METHODOLOGY
 // ═══════════════════════════════════════════════════════════════
 
-= Research Methodology
+= Methodology
 
 This study employs a qualitative research approach combining a literature review with empirical interviews.
 
@@ -73,12 +68,9 @@ In addition, five semi-structured interviews were conducted with managers of Fin
 
 The interview data was analysed using thematic analysis as described by @braun2006. The analysis followed six steps: familiarisation, generating initial codes, searching for themes, reviewing themes, defining and naming themes, and producing the report.
 
-== Ethical Considerations
-
-All interview participants were informed about the purpose of the study and provided written consent. The data was anonymised to protect participant identities.
 
 // ═══════════════════════════════════════════════════════════════
-// CHAPTER 4: RESULTS
+// 4. RESULTS
 // ═══════════════════════════════════════════════════════════════
 
 = Results
@@ -106,49 +98,19 @@ As shown in @tab-barriers, organisational barriers were the most frequently cite
 == Effective Strategies
 
 The interviews identified several effective strategies:
+
 + Partnership with technology providers
 + Incremental implementation approach
 + Employee training programmes
 + Government support schemes
 
-== A Proposed Framework
-
-Based on the findings, a three-phase framework is proposed:
-1. *Assessment Phase*: Evaluate current digital maturity and identify gaps
-2. *Implementation Phase*: Deploy technologies in stages, starting with quick wins
-3. *Improvement Phase*: Continuously monitor, evaluate, and optimise
-
-// ═══════════════════════════════════════════════════════════════
-// CHAPTER 5: DISCUSSION
-// ═══════════════════════════════════════════════════════════════
-
-= Discussion
-
-The findings of this study align with previous research on digital transformation in SMEs @verhoef2021 @westerman2014. The prominence of organisational barriers is consistent with the resource-based view of the firm @barney1991, which suggests that firms with limited resources face greater challenges in implementing strategic changes.
-
-The proposed three-phase framework builds on existing models but is specifically tailored to the Finnish SME context. The emphasis on incremental implementation reflects the practical constraints faced by smaller organisations @rogers2003.
-
-== Limitations
-
-This study has several limitations. The sample size of five interviews limits the generalisability of the findings. Additionally, the study focuses on Finnish SMEs, and the results may not be directly applicable to other contexts.
-
-== Recommendations for Future Research
-
-Future research should validate the proposed framework through longitudinal studies and explore the role of government policy in supporting SME digital transformation.
-
-// ═══════════════════════════════════════════════════════════════
-// CHAPTER 6: CONCLUSIONS
-// ═══════════════════════════════════════════════════════════════
-
 = Conclusions
 
-This thesis has examined digital transformation in Finnish SMEs. The key findings are:
+This report has examined digital transformation in Finnish SMEs. The key findings are:
 
 1. Organisational barriers, particularly lack of digital skills, are the most significant obstacles
 2. Incremental implementation and partnership strategies are effective approaches
 3. A three-phase framework (assessment, implementation, improvement) can guide SMEs through the transformation process
-
-The thesis contributes to the understanding of digital transformation in the specific context of Finnish SMEs and provides a practical tool for business managers.
 
 // ═══════════════════════════════════════════════════════════════
 // APPENDICES
@@ -173,10 +135,10 @@ The thesis contributes to the understanding of digital transformation in the spe
   - My participation is voluntary
   - I may withdraw at any time
   - My responses will be anonymised
-  - The data will be used only for academic purposes
-
-  Signature: #box(width: 8cm, baseline: 1pt)[#line(length: 100%, stroke: 0.4pt)] \
-  Date: #box(width: 5cm, baseline: 1pt)[#line(length: 100%, stroke: 0.4pt)]
+  - The data will be used only for academic purposes \
+  Date: #box(width: 3cm, baseline: 1pt)[#line(length: 100%, stroke: 0.4pt)]
+  #box(width: 3cm, baseline: 1pt)[]
+  Signature: #box(width: 8cm, baseline: 1pt)[#line(length: 100%, stroke: 0.4pt)]
 ]
 
-#bibliography("references.bib")
+#bibliography("template/references.bib")

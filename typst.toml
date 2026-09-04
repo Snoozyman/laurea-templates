@@ -1,11 +1,11 @@
 [package]
 name = "laurea-templates"
-version = "0.1.0"
+version = "0.2.0"
 entrypoint = "src/lib.typ"
 authors = ["Mikko Tuomikoski"]
 license = "CC-BY-SA-3.0"
-description = "Laurea University of Applied Sciences thesis template for Typst."
-repository = "https://github.com/laurea-templates/laurea-templates"
+description = "Laurea University of Applied Sciences thesis and report templates for Typst."
+repository = "https://github.com/Snoozyman/laurea-templates"
 keywords = ["thesis", "laurea", "template", "university", "applied-sciences"]
 categories = ["thesis"]
 disciplines = ["business"]

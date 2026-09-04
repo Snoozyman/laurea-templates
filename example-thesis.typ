@@ -3,7 +3,7 @@
 
 #import "src/lib.typ": *
 
-#show: laurea-thesis.with(
+#show: thesis.with(
   title: [Digital Transformation in Small and Medium-sized Enterprises],
   author: "Maija Meikäläinen",
   degree: "Bachelor of Business Administration",
@@ -15,7 +15,6 @@
     This thesis examines the digital transformation process in small and medium-sized enterprises (SMEs) in Finland. The objective is to identify the key factors that influence the adoption of digital technologies and to develop a practical framework for SMEs undertaking digital transformation. The study combines a systematic literature review with semistructured interviews of five SME managers. The results indicate that organizational readiness, leadership commitment, and access to digital skills are the most critical success factors. The thesis proposes a three-phase framework: assessment, implementation, and continuous improvement.
   ],
   keywords: ("digital transformation", "SMEs", "Finland", "technology adoption", "organizational change"),
-  bibliography-file: "references.bib",
 )
 
 // ═══════════════════════════════════════════════════════════════
@@ -157,10 +156,7 @@ The thesis contributes to the understanding of digital transformation in the spe
 // APPENDICES
 // ═══════════════════════════════════════════════════════════════
 
-#pagebreak()
-= Appendices
-
-#appendix[Appendix 1: Interview Guide][
+#appendix[Interview Guide][
   The interview guide included the following questions:
 
   + How would you describe your company's current level of digital maturity?
@@ -170,7 +166,7 @@ The thesis contributes to the understanding of digital transformation in the spe
   + What advice would you give to other SMEs embarking on digital transformation?
 ]
 
-#appendix[Appendix 2: Interview Consent Form][
+#appendix[Consent Form][
   *Informed Consent Form*
 
   I, the undersigned, consent to participate in the research study titled "Digital Transformation in Small and Medium-sized Enterprises" conducted by Maija Meikäläinen at Laurea University of Applied Sciences.
@@ -184,3 +180,5 @@ The thesis contributes to the understanding of digital transformation in the spe
   Signature: #box(width: 8cm, baseline: 1pt)[#line(length: 100%, stroke: 0.4pt)] \
   Date: #box(width: 5cm, baseline: 1pt)[#line(length: 100%, stroke: 0.4pt)]
 ]
+
+#bibliography("template/references.bib")
