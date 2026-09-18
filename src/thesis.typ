@@ -131,7 +131,14 @@ set par(
   // ── Bibliography defaults ───────────────────────────────────
   // The style resolves relative to this file (src/); the user's own
   // `#bibliography("refs.bib")` call resolves relative to their document.
-  set bibliography(style: csl-style, title: "References")
+  set bibliography(style: csl-style, title: none)
+
+  show bibliography: it => {
+    pagebreak()
+    heading(level: 1)[References]
+    v(1em)
+    it
+  }
 
   // ── Helper: cover page layout ───────────────────────────────
   let cover-page(show-header: bool, body-content) = {

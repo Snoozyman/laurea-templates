@@ -134,7 +134,6 @@
   set page(header: doc_header)
 
 
-
   // ── Headings ────────────────────────────────────────────────
   set heading(numbering: "1.1")
   show heading.where(level: 1): it => {
@@ -173,6 +172,18 @@
     ]
     v(0.2em)
   }
+  show heading.where(level: 4): it => {
+    v(0.5em)
+    block(breakable: false)[
+      #set text(size: 11pt, weight: "bold")
+      #set par(leading: 0.8em, first-line-indent: 0pt)
+      #if it.numbering != none [
+        #counter(heading).display() #h(0.5em)
+      ]
+      #it.body
+    ]
+    v(0.2em)
+  }
 
   // ── Links ───────────────────────────────────────────────────
   show link: set text(fill: blue.darken(20%))
@@ -180,8 +191,14 @@
   // ── Bibliography defaults ───────────────────────────────────
   // The style resolves relative to this file (src/); the user's own
   // `#bibliography("refs.bib")` call resolves relative to their document.
-  set bibliography(style: csl-style, title: "References")
+  set bibliography(style: csl-style, title: none)
   
+  show bibliography: it => {
+    pagebreak()
+    heading(level: 1)[References]
+    v(1em)
+    it
+  }
 
   // ════════════════════════════════════════════════════════════
   // COVER PAGE
@@ -256,4 +273,5 @@
   // ════════════════════════════════════════════════════════════
   render_appendices()
 
+  set bibliography()
 }
